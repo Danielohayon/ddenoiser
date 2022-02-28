@@ -3,6 +3,7 @@ defaults:
   - hydra/job_logging: colorlog
   - hydra/hydra_logging: colorlog
 
+wandb: ture
 # Dataset related
 sample_rate: 16000
 segment: 4
