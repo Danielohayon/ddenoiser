@@ -133,7 +133,9 @@ class Solver(object):
 
         if self.args.wandb:
             wandb.watch(self.model)
-
+        if self.args.wandb:
+            wandb.define_metric("epoch")
+            
         for epoch in range(len(self.history), self.epochs):
             # Train one epoch
             self.model.train()
@@ -159,7 +161,8 @@ class Solver(object):
                 valid_loss = 0
 
             best_loss = min(pull_metric(self.history, 'valid') + [valid_loss])
-            metrics = {'train loss': train_loss, 'valid loss': valid_loss, 'best': best_loss}
+            metrics = {'train loss': train_loss, 'valid loss': valid_loss, 'best': best_loss,
+                        'epoch': epoch}
             # Save the best model
             if valid_loss == best_loss:
                 logger.info(bold('New best valid loss %.4f'), valid_loss)
