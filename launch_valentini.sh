@@ -21,6 +21,6 @@ python train.py \
   segment=4.5 \
   stride=0.5 \
   restart=True \
-  batch_size=128 \
+  batch_size=256 \
   ddp=1 $@
 
