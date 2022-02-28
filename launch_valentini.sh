@@ -7,6 +7,7 @@
 # authors: adiyoss and adefossez
 
 python train.py \
+  +wandb=True\
   dset=valentini \
   demucs.causal=1 \
   demucs.hidden=48 \
