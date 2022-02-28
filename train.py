@@ -9,6 +9,7 @@
 import logging
 import os
 
+import wnb
 import hydra
 
 from denoiser.executor import start_ddp_workers
