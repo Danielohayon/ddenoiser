@@ -9,7 +9,7 @@
 import logging
 import os
 
-import wnb
+import wandb
 import hydra
 
 from denoiser.executor import start_ddp_workers
@@ -34,10 +34,20 @@ def run(args):
     if args.show:
         logger.info(model)
         mb = sum(p.numel() for p in model.parameters()) * 4 / 2**20
+        num_params = sum(p.numel() for p in model.parameters()) / 1000000
         logger.info('Size: %.1f MB', mb)
+        logger.info(f'num params {num_params}')
         if hasattr(model, 'valid_length'):
             field = model.valid_length(1)
             logger.info('Field: %.1f ms', field / args.sample_rate * 1000)
+        enc_params = sum([i.numel() for i in model.encoder.parameters()])/1000000
+        dec_params = sum([i.numel() for i in model.decoder.parameters()]) / 1000000
+        if args.demucs.use_lstm:
+            lstm_params = sum([i.numel() for i in model.lstm.parameters()]) / 1000000
+        else:
+            lstm_params = 0
+        logger.info(f'enc {enc_params}, dec {dec_params}, lstm {lstm_params} in mil')
+
         return
 
     assert args.batch_size % distrib.world_size == 0
@@ -91,6 +101,9 @@ def _main(args):
     if args.verbose:
         logger.setLevel(logging.DEBUG)
         logging.getLogger("denoise").setLevel(logging.DEBUG)
+
+    if args.wandb:
+        wandb.init(project='DenoiserNew', entity='danielo', config=args)
 
     logger.info("For logs, checkpoints and samples check %s", os.getcwd())
     logger.debug(args)
