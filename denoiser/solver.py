@@ -159,7 +159,7 @@ class Solver(object):
                 valid_loss = 0
 
             best_loss = min(pull_metric(self.history, 'valid') + [valid_loss])
-            metrics = {'train': train_loss, 'valid': valid_loss, 'best': best_loss}
+            metrics = {'train loss': train_loss, 'valid loss': valid_loss, 'best': best_loss}
             # Save the best model
             if valid_loss == best_loss:
                 logger.info(bold('New best valid loss %.4f'), valid_loss)
@@ -175,7 +175,7 @@ class Solver(object):
                 with swap_state(self.model, self.best_state):
                     pesq, stoi = evaluate(self.args, self.model, self.tt_loader)
 
-                metrics.update({'pesq': pesq, 'stoi': stoi})
+                metrics.update({'test pesq': pesq, 'test stoi': stoi})
 
                 # enhance some samples
                 logger.info('Enhance and save samples...')
@@ -188,7 +188,7 @@ class Solver(object):
 
             if self.args.wandb:
                 wandb.log(metrics)
-                
+
             if distrib.rank == 0:
                 json.dump(self.history, open(self.history_file, "w"), indent=2)
                 # Save model each epoch
