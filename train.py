@@ -119,15 +119,12 @@ def main(args):
     try:
         _main(args)
     except Exception:
+        print(traceback.format_exc())
+        print(sys.exc_info())
         logger.exception("Some error happened")
         # Hydra intercepts exit code, fixed in beta but I could not get the beta to work
         os._exit(1)
 
 
 if __name__ == "__main__":
-    try:
-        main()
-    except Exception:
-            print(traceback.format_exc())
-    # or
-    print(sys.exc_info())
+    main()
