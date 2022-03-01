@@ -21,5 +21,5 @@ python train.py \
   restart=True \
   batch_size=256 \
   demucs.depth=2 \
-  demucs.lstm_depth=20 \
+  demucs.lstm_depth=15 \
   ddp=1 $@
