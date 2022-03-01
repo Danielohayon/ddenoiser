@@ -103,6 +103,8 @@ def _main(args):
         logger.setLevel(logging.DEBUG)
         logging.getLogger("denoise").setLevel(logging.DEBUG)
 
+    if args.show:
+        args.wandb = False
     if args.wandb:
         wandb.init(project='DenoiserNew', entity='danielo', config=args)
 

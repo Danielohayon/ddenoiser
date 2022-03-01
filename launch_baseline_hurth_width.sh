@@ -1,9 +1,10 @@
 # here we will set the base line for a 1mil parameter model
-#hurting the depth but not the width
-#[2022-03-01 08:19:15,408][__main__][INFO] - Size: 4.4 MB
-#[2022-03-01 08:19:15,409][__main__][INFO] - num params 1.157665
-#[2022-03-01 08:19:15,409][__main__][INFO] - Field: 2.3 ms
-#[2022-03-01 08:19:15,410][__main__][INFO] - enc 0.28248, dec 0.282289, lstm 0.592896 in mil
+#hurting the width
+
+#[2022-03-01 08:29:21,418][__main__][INFO] - Size: 4.5 MB
+#[2022-03-01 08:29:21,418][__main__][INFO] - num params 1.188025
+#[2022-03-01 08:29:21,419][__main__][INFO] - Field: 37.3 ms
+#[2022-03-01 08:29:21,419][__main__][INFO] - enc 0.398154, dec 0.397999, lstm 0.391872 in mil
 
 python train.py \
   wandb=True\
@@ -20,6 +21,6 @@ python train.py \
   stride=0.5 \
   restart=True \
   batch_size=256 \
-  demucs.depth=3 \
+  demucs.growth=1.35 \
   demucs.use_lstm=True \
   ddp=1 $@
