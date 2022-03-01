@@ -6,7 +6,6 @@ python train.py \
   demucs.causal=1 \
   demucs.hidden=48 \
   bandmask=0.2 \
-  demucs.resample=4 \
   remix=1 \
   shift=8000 \
   shift_same=True \
@@ -17,5 +16,6 @@ python train.py \
   restart=True \
   batch_size=256 \
   demucs.depth=3 \
+  demucs.use_lstm=True \
   show=True \
   ddp=1 $@

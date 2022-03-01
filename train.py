@@ -8,7 +8,8 @@
 
 import logging
 import os
-
+import traceback
+import sys
 import wandb
 import hydra
 
@@ -124,4 +125,9 @@ def main(args):
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception:
+            print(traceback.format_exc())
+    # or
+    print(sys.exc_info())
