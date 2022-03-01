@@ -1,12 +1,10 @@
 # here we will set the base line for a 1mil parameter model
-#hurting the depth but not the width
-#[2022-03-01 08:19:15,408][__main__][INFO] - Size: 4.4 MB
-#[2022-03-01 08:19:15,409][__main__][INFO] - num params 1.157665
-#[2022-03-01 08:19:15,409][__main__][INFO] - Field: 2.3 ms
-#[2022-03-01 08:19:15,410][__main__][INFO] - enc 0.28248, dec 0.282289, lstm 0.592896 in mil
-
+# Two layers of encoder with deep lstm
+#[2022-03-01 23:27:33,103][__main__][INFO] - Size: 4.2 MB
+#[2022-03-01 23:27:33,104][__main__][INFO] - num params 1.089793
+#[2022-03-01 23:27:33,104][__main__][INFO] - Field: 0.6 ms
+#[2022-03-01 23:27:33,104][__main__][INFO] - enc 0.06072, dec 0.060625, lstm 0.968448 in mil
 python train.py \
-  show=True \
   dset=valentini \
   demucs.causal=1 \
   demucs.hidden=48 \

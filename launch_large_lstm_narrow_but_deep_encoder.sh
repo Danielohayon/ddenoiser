@@ -6,7 +6,6 @@
 #[2022-03-01 08:19:15,410][__main__][INFO] - enc 0.28248, dec 0.282289, lstm 0.592896 in mil
 
 python train.py \
-  show=True\
   dset=valentini \
   demucs.causal=1 \
   demucs.hidden=48 \
