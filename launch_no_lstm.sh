@@ -1,8 +1,11 @@
-# here we will try without lstm
-#[2022-03-01 08:19:15,408][__main__][INFO] - Size: 4.4 MB
-#[2022-03-01 08:19:15,409][__main__][INFO] - num params 1.157665
-#[2022-03-01 08:19:15,409][__main__][INFO] - Field: 2.3 ms
-#[2022-03-01 08:19:15,410][__main__][INFO] - enc 0.28248, dec 0.282289, lstm 0.592896 in mil
+# here we will set the base line for a 1mil parameter model
+#hurting the width
+
+#[2022-03-01 08:38:48,770][__main__][INFO] - Size: 4.1 MB
+#[2022-03-01 08:38:48,770][__main__][INFO] - num params 1.076914
+#[2022-03-01 08:38:48,771][__main__][INFO] - Field: 37.3 ms
+#[2022-03-01 08:38:48,771][__main__][INFO] - enc 0.538553, dec 0.538361, lstm 0 in mil
+
 
 python train.py \
   wandb=True\
@@ -21,5 +24,4 @@ python train.py \
   batch_size=256 \
   demucs.growth=1.42 \
   demucs.use_lstm=False \
-  show=True \
   ddp=1 $@
