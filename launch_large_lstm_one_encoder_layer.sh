@@ -20,6 +20,6 @@ python train.py \
   stride=0.5 \
   restart=True \
   batch_size=256 \
-  demucs.depth=1 \
-  demucs.lstm_depth=4 \
+  demucs.depth=2 \
+  demucs.lstm_depth=8 \
   ddp=1 $@
