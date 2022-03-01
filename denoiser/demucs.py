@@ -86,7 +86,8 @@ class Demucs(nn.Module):
                  glu=True,
                  rescale=0.1,
                  floor=1e-3,
-                 sample_rate=16_000):
+                 sample_rate=16_000,
+                 use_lstm=True):
 
         super().__init__()
         if resample not in [1, 2, 4]:
@@ -103,7 +104,8 @@ class Demucs(nn.Module):
         self.resample = resample
         self.normalize = normalize
         self.sample_rate = sample_rate
-
+        self.use_lstm = use_lstm
+        
         self.encoder = nn.ModuleList()
         self.decoder = nn.ModuleList()
         activation = nn.GLU(1) if glu else nn.ReLU()
