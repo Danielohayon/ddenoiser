@@ -105,7 +105,7 @@ class Demucs(nn.Module):
         self.normalize = normalize
         self.sample_rate = sample_rate
         self.use_lstm = use_lstm
-        
+
         self.encoder = nn.ModuleList()
         self.decoder = nn.ModuleList()
         activation = nn.GLU(1) if glu else nn.ReLU()
@@ -132,7 +132,8 @@ class Demucs(nn.Module):
             chin = hidden
             hidden = min(int(growth * hidden), max_hidden)
 
-        self.lstm = BLSTM(chin, bi=not causal)
+        if self.use_lstm:
+            self.lstm = BLSTM(chin, bi=not causal)
         if rescale:
             rescale_module(self, reference=rescale)
 
@@ -181,7 +182,8 @@ class Demucs(nn.Module):
             x = encode(x)
             skips.append(x)
         x = x.permute(2, 0, 1)
-        x, _ = self.lstm(x)
+        if self.use_lstm:
+            x, _ = self.lstm(x)
         x = x.permute(1, 2, 0)
         for decode in self.decoder:
             skip = skips.pop(-1)
@@ -381,7 +383,8 @@ class DemucsStreamer:
             skips.append(x)
 
         x = x.permute(2, 0, 1)
-        x, self.lstm_state = demucs.lstm(x, self.lstm_state)
+        if demucs.use_lstm:
+            x, self.lstm_state = demucs.lstm(x, self.lstm_state)
         x = x.permute(1, 2, 0)
         # In the following, x contains only correct samples, i.e. the one
         # for which each time position is covered by two window of the upper layer.
