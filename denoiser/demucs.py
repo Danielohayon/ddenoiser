@@ -87,7 +87,8 @@ class Demucs(nn.Module):
                  rescale=0.1,
                  floor=1e-3,
                  sample_rate=16_000,
-                 use_lstm=True):
+                 use_lstm=True,
+                 lstm_depth=2):
 
         super().__init__()
         if resample not in [1, 2, 4]:
@@ -105,6 +106,7 @@ class Demucs(nn.Module):
         self.normalize = normalize
         self.sample_rate = sample_rate
         self.use_lstm = use_lstm
+        self.lstm_depth = lstm_depth
 
         self.encoder = nn.ModuleList()
         self.decoder = nn.ModuleList()
@@ -133,7 +135,7 @@ class Demucs(nn.Module):
             hidden = min(int(growth * hidden), max_hidden)
 
         if self.use_lstm:
-            self.lstm = BLSTM(chin, bi=not causal)
+            self.lstm = BLSTM(chin, layers=self.lstm_depth, bi=not causal)
         if rescale:
             rescale_module(self, reference=rescale)
 

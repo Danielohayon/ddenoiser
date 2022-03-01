@@ -76,6 +76,7 @@ demucs:
   growth: 2
   rescale: 0.1
   use_lstm: true
+  lstm_depth: 2
 
 # Experiment launching, distributed
 ddp: false
