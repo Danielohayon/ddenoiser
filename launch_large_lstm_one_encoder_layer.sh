@@ -1,9 +1,9 @@
 # here we will set the base line for a 1mil parameter model
 # Two layers of encoder with deep lstm
-#[2022-03-01 23:27:33,103][__main__][INFO] - Size: 4.2 MB
-#[2022-03-01 23:27:33,104][__main__][INFO] - num params 1.089793
-#[2022-03-01 23:27:33,104][__main__][INFO] - Field: 0.6 ms
-#[2022-03-01 23:27:33,104][__main__][INFO] - enc 0.06072, dec 0.060625, lstm 0.968448 in mil
+#[2022-03-02 10:30:58,827][__main__][INFO] - num params 1.115674
+#[2022-03-02 10:30:58,827][__main__][INFO] - Field: 0.6 ms
+#[2022-03-02 10:30:58,827][__main__][INFO] - enc 0.088341, dec 0.088213, lstm 0.93912 in mil
+
 python train.py \
   dset=valentini \
   demucs.causal=1 \
@@ -19,5 +19,6 @@ python train.py \
   restart=True \
   batch_size=256 \
   demucs.depth=2 \
-  demucs.lstm_depth=13 \
+  demucs.growth=2.7 \
+  demucs.lstm_depth=7 \
   ddp=1 $@

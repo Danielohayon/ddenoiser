@@ -19,6 +19,7 @@ python train.py \
   stride=0.5 \
   restart=True \
   batch_size=256 \
-  demucs.growth=1.35 \
-  demucs.lstm_depth=4 \
+  demucs.growth=1.25 \
+  demucs.depth=7 \
+  demucs.lstm_depth=7 \
   ddp=1 $@
