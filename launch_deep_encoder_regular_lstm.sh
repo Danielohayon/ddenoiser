@@ -17,6 +17,6 @@ python train.py \
   restart=True \
   batch_size=128 \
   demucs.depth=8 \
-  demucs.growth=1.25 \
+  demucs.growth=1.14 \
   demucs.lstm_depth=2 \
   ddp=1 $@
