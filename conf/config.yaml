@@ -11,9 +11,9 @@ stride: 1    # in seconds, how much to stride between training examples
 pad: true   # if training sample is too short, pad it
 
 # Dataset Augmentation
-remix: false   # remix noise and clean
+remix: 1   # remix noise and clean
 bandmask: 0.   # drop at most this fraction of freqs in mel scale
-shift: 0    # random shift, number of samples
+shift: 8000    # random shift, number of samples
 shift_same: false   # shift noise and clean by the same amount
 revecho: 0  # add reverb like augment
 
