@@ -20,3 +20,4 @@ python train.py \
   demucs.growth=1.095 \
   demucs.lstm_depth=1 \
   ddp=1 $@
+  
