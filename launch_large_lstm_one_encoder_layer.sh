@@ -14,8 +14,8 @@ python train.py \
   stft_sc_factor=0.1 stft_mag_factor=0.1 \
   segment=4.5 \
   stride=0.5 \
-  restart=True \
-  batch_size=128 \
+  restart=False \
+  batch_size=64 \
   demucs.depth=2 \
   demucs.growth=3.7 \
   demucs.lstm_depth=3 \
